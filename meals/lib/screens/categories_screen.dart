@@ -27,6 +27,7 @@ class CategoriesScreen extends StatelessWidget {
           itemCount: Provider.of<CategoryData>(context).categories.length,
           itemBuilder: (BuildContext context, int index) {
             return CategoryItem(
+              id: Provider.of<CategoryData>(context).categories[index].id,
               title: Provider.of<CategoryData>(context).categories[index].title,
               color: Provider.of<CategoryData>(context).categories[index].color,
             );
