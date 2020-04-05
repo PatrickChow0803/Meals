@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories_screen.dart';
+import 'package:meals/screens/category_meals_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'models/category_data.dart';
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
                 title: TextStyle(fontSize: 25, fontWeight: FontWeight.bold))),
         title: 'DeliMeals',
         home: CategoriesScreen(),
+        // Because routes takes a map, use curly braces since they represent a map
+        routes: {'/category-meals': (ctx) => CategoryMealsScreen()},
       ),
     );
   }

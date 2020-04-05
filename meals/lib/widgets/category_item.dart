@@ -10,9 +10,16 @@ class CategoryItem extends StatelessWidget {
 
   // Method that gets called when a user selects on a category
   void selectCategory(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-      return CategoryMealsScreen(categoryId: id, categoryTitle: title);
-    }));
+    // This is for the regular route push
+//    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+//      return CategoryMealsScreen(categoryId: id, categoryTitle: title);
+//    }));
+    // This is for the named route push
+    // Arguments could be anything, such as an int or String. But this is being pass in a map.
+    Navigator.pushNamed(context, '/category-meals', arguments: {
+      'id': id,
+      'title': title,
+    });
   }
 
   @override
