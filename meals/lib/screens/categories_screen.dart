@@ -10,13 +10,19 @@ class CategoriesScreen extends StatelessWidget {
     // gridDelegate is how I want the grid to be organized
     return Scaffold(
       appBar: AppBar(
-        title: Text('DeliMeal'),
+        title: const Text('DeliMeal'),
       ),
       body: GridView.builder(
+          // Adds spacing between all the widgets.
+          padding: EdgeInsets.all(25),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            // The maximum amount of length that a widget should take.
             maxCrossAxisExtent: 200,
+            // Aspect Ratio between width and the height
             childAspectRatio: 3 / 2,
+            // The amount of spacing in the middle
             crossAxisSpacing: 20,
+            // The amount of spacing top/bot
             mainAxisSpacing: 20,
           ),
           itemCount: Provider.of<CategoryData>(context).categories.length,
