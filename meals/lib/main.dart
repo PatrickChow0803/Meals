@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/home_screen.dart';
 import 'package:meals/screens/models/category_data.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.blue),
         title: 'DeliMeals',
-        home: HomeScreen(),
+        home: CategoriesScreen(),
       ),
     );
   }
