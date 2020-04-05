@@ -10,6 +10,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Use the MultiProvider because there's multiple sources of data
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => CategoryData())],
       child: MaterialApp(
