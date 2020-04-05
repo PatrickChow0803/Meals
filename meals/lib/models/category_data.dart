@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals/screens/models/category.dart';
+import 'package:meals/models/category.dart';
 
 class CategoryData extends ChangeNotifier {
   List<Category> categories = const [
