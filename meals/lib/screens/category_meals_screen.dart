@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meals/models/meal_data.dart';
+import 'package:provider/provider.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
   // Because app is now using named routes to pass arguments, fields and constructor is no longer needed
@@ -18,12 +20,18 @@ class CategoryMealsScreen extends StatelessWidget {
         ModalRoute.of(context).settings.arguments as Map<String, String>;
     final categoryId = routeArgs['id'];
     final categoryTitle = routeArgs['title'];
+    final categoryMeals = Provider.of<MealData>(context).meals.where((meal) {
+      return meal.categories.contains(categoryId);
+    }).toList();
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryTitle),
       ),
-      body: Center(
-        child: Text('The Recipes for the Category!'),
+      body: ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return Text(categoryMeals[index].title);
+        },
+        itemCount: categoryMeals.length,
       ),
     );
   }
