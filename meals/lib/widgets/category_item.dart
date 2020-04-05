@@ -16,7 +16,7 @@ class CategoryItem extends StatelessWidget {
 //    }));
     // This is for the named route push
     // Arguments could be anything, such as an int or String. But this is being pass in a map.
-    Navigator.pushNamed(context, '/category-meals', arguments: {
+    Navigator.pushNamed(context, CategoryMealsScreen.routeName, arguments: {
       'id': id,
       'title': title,
     });

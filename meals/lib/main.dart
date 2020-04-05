@@ -21,9 +21,12 @@ class MyApp extends StatelessWidget {
                 body2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
                 title: TextStyle(fontSize: 25, fontWeight: FontWeight.bold))),
         title: 'DeliMeals',
-        home: CategoriesScreen(),
+//        home: CategoriesScreen(),
         // Because routes takes a map, use curly braces since they represent a map
-        routes: {'/category-meals': (ctx) => CategoryMealsScreen()},
+        routes: {
+          '/': (ctx) => CategoriesScreen(),
+          CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        },
       ),
     );
   }
