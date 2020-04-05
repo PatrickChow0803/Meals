@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
+
 import 'meal.dart';
 
-class MealData {
+class MealData extends ChangeNotifier {
   List<Meal> meals = [
     Meal(
       id: 'm1',

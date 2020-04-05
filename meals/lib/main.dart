@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/models/meal_data.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/category_meals_screen.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use the MultiProvider because there's multiple sources of data
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => CategoryData())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => CategoryData()),
+        ChangeNotifierProvider(create: (_) => MealData()),
+      ],
       child: MaterialApp(
         theme: ThemeData(
             primarySwatch: Colors.blue,
