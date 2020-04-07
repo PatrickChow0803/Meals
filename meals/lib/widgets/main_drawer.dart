@@ -41,10 +41,12 @@ class MainDrawer extends StatelessWidget {
           ),
           buildListTile('Meals', Icons.restaurant, () {
             // Default categories screen
-            Navigator.pushNamed(context, '/');
+            // pushReplacementNamed moves to the new route while also removing the current screen.
+            // This prevents an infinite amount of screens on the stack.
+            Navigator.pushReplacementNamed(context, '/');
           }),
           buildListTile('Settings', Icons.settings, () {
-            Navigator.pushNamed(context, FiltersScreen.routeName);
+            Navigator.pushReplacementNamed(context, FiltersScreen.routeName);
           }),
         ],
       ),
