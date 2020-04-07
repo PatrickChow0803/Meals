@@ -3,6 +3,7 @@ import 'package:meals/models/meal_data.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/category_meals_screen.dart';
 import 'package:meals/screens/meal_detail_screen.dart';
+import 'package:meals/screens/tabs_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'models/category_data.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
             primarySwatch: Colors.blue,
+            accentColor: Colors.yellowAccent,
             // Theme for text. Look at the category_item file to see how it's used.
             textTheme: ThemeData.light().textTheme.copyWith(
                 body1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         //        home: CategoriesScreen(),
         // Because routes takes a map, use curly braces since they represent a map
         routes: {
-          '/': (ctx) => CategoriesScreen(),
+          '/': (ctx) => TabsScreen(),
           CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
           MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
         },
