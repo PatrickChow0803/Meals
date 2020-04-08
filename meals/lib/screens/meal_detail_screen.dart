@@ -92,14 +92,14 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          // The data is passed back to meal_item since meal_item is what pushes to this screen
-          List<String> testing = ['$mealId', '1', '2', '3'];
-          Navigator.of(context).pop(testing);
-        },
-      ),
+//      floatingActionButton: FloatingActionButton(
+//        child: Icon(Icons.delete),
+//        onPressed: () {
+//          // The data is passed back to meal_item since meal_item is what pushes to this screen
+//          List<String> testing = ['$mealId', '1', '2', '3'];
+//          Navigator.of(context).pop(testing);
+//        },
+//      ),
     );
   }
 }
