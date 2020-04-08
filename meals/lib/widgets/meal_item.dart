@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/screens/meal_detail_screen.dart';
 
-class MealItem extends StatelessWidget {
+class MealItem extends StatefulWidget {
   final String id;
   final String title;
   final String imageUrl;
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
 
   MealItem({
     @required this.id,
@@ -18,31 +17,33 @@ class MealItem extends StatelessWidget {
     @required this.duration,
     @required this.complexity,
     @required this.affordability,
-    @required this.removeItem,
+//    @required this.removeItem,
   });
 
-  // Moves to the meal details screen
-  // pushNamed returns a future. A future are objects that allow a function to execute once they're done with execution
-  // Therefore .then is called when pushNamed is complete, which is when the page is popped.
-  // result is the data that is passed back
+  @override
+  _MealItemState createState() => _MealItemState();
+}
+
+class _MealItemState extends State<MealItem> {
+  bool favorited = false;
+
   void selectMeal(BuildContext context) {
     Navigator.pushNamed(
       context,
       MealDetailScreen.routeName,
-      arguments: id,
+      arguments: widget.id,
     ).then((result) {
       List<String> listOfResults = result as List<String>;
       // != means that you know that you have an ID of an item that you want to remove
 //      print(listOfResults[0]);
       if (listOfResults[0] != null) {
-        removeItem(listOfResults[0]);
+//        removeItem(listOfResults[0]);
       }
     });
   }
 
-  // Used to convert enum Complexity value to a String
   String get complexityText {
-    switch (complexity) {
+    switch (widget.complexity) {
       case Complexity.Simple:
         return 'Simple';
         break;
@@ -57,9 +58,8 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  // Used to convert enum Affordability value to a String
   String get affordablityText {
-    switch (affordability) {
+    switch (widget.affordability) {
       case Affordability.Affordable:
         return 'Affordable';
         break;
@@ -96,7 +96,7 @@ class MealItem extends StatelessWidget {
                     topRight: Radius.circular(15.0),
                   ),
                   child: Image.network(
-                    imageUrl,
+                    widget.imageUrl,
                     // Height should be 40% of the device screen
                     height: MediaQuery.of(context).size.height * .4,
                     // Width takes as much screen width possible
@@ -114,7 +114,7 @@ class MealItem extends StatelessWidget {
                     color: Colors.black54,
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     child: Text(
-                      title,
+                      widget.title,
                       style: TextStyle(
                         fontSize: 26,
                         color: Colors.white,
@@ -124,7 +124,24 @@ class MealItem extends StatelessWidget {
                       overflow: TextOverflow.fade,
                     ),
                   ),
-                )
+                ),
+                Container(
+                  width: 50.0,
+                  margin: EdgeInsets.all(10.0),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      color: Colors.white),
+                  child: IconButton(
+                    icon: Icon(Icons.favorite,
+                        color: favorited ? Colors.pink : Colors.black54),
+                    onPressed: () {
+                      setState(() {
+                        favorited = !favorited;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
             Padding(
@@ -136,7 +153,7 @@ class MealItem extends StatelessWidget {
                     children: <Widget>[
                       Icon(Icons.schedule),
                       SizedBox(width: 6),
-                      Text('$duration mins')
+                      Text('${widget.duration} mins')
                     ],
                   ),
                   Row(

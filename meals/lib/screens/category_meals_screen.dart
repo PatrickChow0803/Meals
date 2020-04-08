@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/models/meal_data.dart';
 import 'package:meals/widgets/meal_item.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +44,7 @@ class CategoryMealsScreen extends StatelessWidget {
             complexity: categoryMeals[index].complexity,
             duration: categoryMeals[index].duration,
             imageUrl: categoryMeals[index].imageUrl,
-            removeItem: _removeMeal,
+//            removeItem: _removeMeal,
           );
         },
         itemCount: categoryMeals.length,

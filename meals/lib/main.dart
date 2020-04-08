@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/models/meal_data.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/category_meals_screen.dart';
@@ -11,7 +12,19 @@ import 'models/category_data.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false
+  };
+
   @override
   Widget build(BuildContext context) {
     // Use the MultiProvider because there's multiple sources of data
@@ -36,6 +49,7 @@ class MyApp extends StatelessWidget {
           '/': (ctx) => TabsScreen(),
           CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
           MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+          // Passes the function _setFilters to the FiltersScreen
           FiltersScreen.routeName: (ctx) => FiltersScreen(),
         },
         onUnknownRoute: (settings) {

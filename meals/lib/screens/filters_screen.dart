@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:meals/widgets/main_drawer.dart';
+import 'package:provider/provider.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
+
+  final Function saveFilters;
+
+  FiltersScreen({this.saveFilters});
 
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  static bool _glutenFree = false;
-  static bool _vegetarian = false;
-  static bool _vegan = false;
-  static bool _lactoseFree = false;
-
   SwitchListTile _createSwitchListTile(
     String title,
     String description,
@@ -27,6 +27,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
       onChanged: updateValue,
     );
   }
+
+  static bool _glutenFree = false;
+  static bool _vegetarian = false;
+  static bool _vegan = false;
+  static bool _lactoseFree = false;
 
   List<Map<String, Object>> switchInformation = [
     {
@@ -56,6 +61,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: widget.saveFilters,
+          )
+        ],
       ),
       // If you don't want the basic back arrow, add a drawer to it
       drawer: MainDrawer(),
@@ -76,6 +87,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   switchInformation[index]['title'],
                   switchInformation[index]['description'],
                   switchInformation[index]['currentValue'],
+                  // This is the function for onChanged:
+                  // onChanged: returns a boolean parameter, which is newValue in this case
                   (newValue) {
                     setState(() {
                       switchInformation[index]['currentValue'] = newValue;
