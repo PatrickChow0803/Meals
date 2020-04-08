@@ -9,18 +9,35 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
 
-  MealItem(
-      {@required this.id,
-      @required this.title,
-      @required this.imageUrl,
-      @required this.duration,
-      @required this.complexity,
-      @required this.affordability});
+  MealItem({
+    @required this.id,
+    @required this.title,
+    @required this.imageUrl,
+    @required this.duration,
+    @required this.complexity,
+    @required this.affordability,
+    @required this.removeItem,
+  });
 
   // Moves to the meal details screen
+  // pushNamed returns a future. A future are objects that allow a function to execute once they're done with execution
+  // Therefore .then is called when pushNamed is complete, which is when the page is popped.
+  // result is the data that is passed back
   void selectMeal(BuildContext context) {
-    Navigator.pushNamed(context, MealDetailScreen.routeName, arguments: id);
+    Navigator.pushNamed(
+      context,
+      MealDetailScreen.routeName,
+      arguments: id,
+    ).then((result) {
+      List<String> listOfResults = result as List<String>;
+      // != means that you know that you have an ID of an item that you want to remove
+//      print(listOfResults[0]);
+      if (listOfResults[0] != null) {
+        removeItem(listOfResults[0]);
+      }
+    });
   }
 
   // Used to convert enum Complexity value to a String

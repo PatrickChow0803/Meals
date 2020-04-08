@@ -33,9 +33,9 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String id = ModalRoute.of(context).settings.arguments as String;
+    String mealId = ModalRoute.of(context).settings.arguments as String;
     Meal selectedMeal = Provider.of<MealData>(context).meals.firstWhere((meal) {
-      return meal.id == id;
+      return meal.id == mealId;
     });
     return Scaffold(
       appBar: AppBar(
@@ -91,6 +91,14 @@ class MealDetailScreen extends StatelessWidget {
                     }))
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          // The data is passed back to meal_item since meal_item is what pushes to this screen
+          List<String> testing = ['$mealId', '1', '2', '3'];
+          Navigator.of(context).pop(testing);
+        },
       ),
     );
   }

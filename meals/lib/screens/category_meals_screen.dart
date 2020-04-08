@@ -15,6 +15,12 @@ class CategoryMealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _removeMeal(String mealId) {
+      Provider.of<MealData>(context, listen: false)
+          .meals
+          .removeWhere((meal) => mealId == meal.id);
+    }
+
     // This receives the arguments that were passed in category_item.
     // Because I passed in a Map of type <String, String>, should tell Flutter what kind of map it is.
     final routeArgs =
@@ -37,6 +43,7 @@ class CategoryMealsScreen extends StatelessWidget {
             complexity: categoryMeals[index].complexity,
             duration: categoryMeals[index].duration,
             imageUrl: categoryMeals[index].imageUrl,
+            removeItem: _removeMeal,
           );
         },
         itemCount: categoryMeals.length,
